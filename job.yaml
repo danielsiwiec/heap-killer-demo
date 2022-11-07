@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: heapkiller
+spec:
+  template:
+    spec:
+      containers:
+        - name: heapkiller
+          image: heapkiller
+          imagePullPolicy: Never
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          env:
+            - name: JAVA_TOOL_OPTIONS
+#              DOESN'T WORK - Java OutOfMemoryError. Workload is the size of heap. any other object kills
+#              value: '-XX:+UseContainerSupport -XX:InitialRAMPercentage=10.0 -XX:MaxRAMPercentage=70.0'
+#              DOESN'T WORK - K8s 137 OOMKill. Kubernetes kills the pod. Heap + non-heap exceed the memory limit
+#              value: '-XX:+UseContainerSupport -XX:InitialRAMPercentage=10.0 -XX:MaxRAMPercentage=90.0'
+#              WORKS - workload fits in the heap and leaves enough space for non heap
+              value: '-XX:+UseContainerSupport -XX:InitialRAMPercentage=10.0 -XX:MaxRAMPercentage=80.0'
+            - name: HEAP_TO_FILL
+              value: '350'
+      restartPolicy: Never
+  backoffLimit: 4
