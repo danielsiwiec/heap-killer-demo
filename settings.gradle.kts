@@ -1,3 +1,3 @@
 
-rootProject.name = "demo"
+rootProject.name = "heap-killer-demo"
 include("app")
