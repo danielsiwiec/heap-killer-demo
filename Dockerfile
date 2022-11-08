@@ -1,5 +1,5 @@
-FROM gcr.io/distroless/java17-debian11
+FROM openjdk:17-jdk-slim
 
 COPY app/build/libs/app.jar /app.jar
 
-CMD ["/app.jar"]
+CMD ["java", "-jar", "/app.jar"]
