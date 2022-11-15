@@ -1,9 +1,6 @@
 plugins {
     application
-    kotlin("jvm") version "1.7.20"
-    kotlin("plugin.spring") version "1.7.20"
-    id("org.springframework.boot") version "2.7.5"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    kotlin("jvm") version "1.7.21"
 }
 
 repositories {
@@ -11,10 +8,9 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.slf4j:slf4j-api:1.7.30")
-    implementation("ch.qos.logback:logback-classic:1.2.9")
-    implementation("ch.qos.logback:logback-core:1.2.9")
+    implementation("org.slf4j:slf4j-api:2.0.3")
+    implementation("ch.qos.logback:logback-classic:1.4.4")
+    implementation("ch.qos.logback:logback-core:1.4.4")
 }
 
 application {
@@ -27,4 +23,8 @@ tasks.jar {
             "Main-Class" to "com.dansiwiec.HeapDestroyerKt"
         )
     }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }

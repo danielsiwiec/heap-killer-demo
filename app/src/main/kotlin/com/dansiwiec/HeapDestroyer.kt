@@ -1,8 +1,6 @@
 package com.dansiwiec
 
 import org.slf4j.LoggerFactory
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 
 val HEAP_TO_FILL: Int = (System.getenv("HEAP_TO_FILL") ?: "350").toInt()
 val INCREMENTS_IN_MB = (System.getenv("INCREMENTS_IN_MB") ?: "50").toInt()
@@ -10,11 +8,9 @@ val INCREMENTS_IN_MB = (System.getenv("INCREMENTS_IN_MB") ?: "50").toInt()
 private val logger = LoggerFactory.getLogger(HeapDestroyer::class.java)
 const val BYTES_TO_MB = 1024 * 1024
 
-@SpringBootApplication
 class HeapDestroyer
 
 fun main(args: Array<String>) {
-    runApplication<HeapDestroyer>(*args)
     blowHeap()
 }
 
