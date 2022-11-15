@@ -16,11 +16,11 @@ spec:
           cpu: "500m"
       env:
         - name: JAVA_TOOL_OPTIONS
-          #              DOESN'T WORK - Java OutOfMemoryError. Workload is the size of heap. any other object kills
-          #              value: '-XX:InitialRAMPercentage=10.0 -XX:MaxRAMPercentage=70.0'
-          #              DOESN'T WORK - K8s 137 OOMKill. Kubernetes kills the pod. Heap + non-heap exceed the memory limit
-          #              value: '-XX:InitialRAMPercentage=10.0 -XX:MaxRAMPercentage=90.0'
-          #              WORKS - workload fits in the heap and leaves enough space for non heap
-          value: '-XX:InitialRAMPercentage=10.0 -XX:MaxRAMPercentage=80.0'
+#          DOESN'T WORK - Java OutOfMemoryError. Workload is the size of heap. any other object kills
+#          value: '-XX:MaxRAMPercentage=70.0'
+#          DOESN'T WORK - K8s 137 OOMKill. Kubernetes kills the pod. Heap + non-heap exceed the memory limit
+#          value: '-XX:MaxRAMPercentage=90.0'
+#          WORKS - workload fits in the heap and leaves enough space for non heap
+          value: '-XX:MaxRAMPercentage=80.0'
         - name: HEAP_TO_FILL
           value: '350'
