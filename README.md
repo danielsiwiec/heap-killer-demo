@@ -1,6 +1,6 @@
 # Heap killer
 
-This is a companion repository to the Medium article on https://danoncoding.com
+This is a companion repository to the Medium article on https://danoncoding.com/tricky-kubernetes-memory-management-for-java-applications-d2f88dd4e9f6
 
 ## Prerequisites
 
@@ -10,4 +10,4 @@ This is a companion repository to the Medium article on https://danoncoding.com
 ## Instructions
 
 1. Clone the repository
-2. `make go`. This command builds the application and deploys it to Kubernetes.
+2. `make up`. This command builds the application and deploys it to Kubernetes.
